@@ -30,3 +30,8 @@ shadowJar {
         attributes 'Main-Class': mainClass
     }
 }
+
+task runServer(dependsOn: shadowJar, type: JavaExec) {
+    main = '-jar'
+    args = [shadowJar.archivePath, 'server', 'hello-world.yml']
+}
