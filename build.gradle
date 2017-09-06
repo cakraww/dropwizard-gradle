@@ -1,0 +1,32 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.1'
+}
+
+group 'com.example.helloworld'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+project.ext {
+    dropwizardVersion = '1.1.4'
+    mainClass = 'com.example.helloworld.HelloWorldApplication'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'io.dropwizard', name: 'dropwizard-core', version: dropwizardVersion
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+shadowJar {
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+    manifest {
+        attributes 'Main-Class': mainClass
+    }
+}
