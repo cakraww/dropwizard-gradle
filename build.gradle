@@ -10,7 +10,7 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 project.ext {
-    dropwizardVersion = '1.1.4'
+    dropwizardVersion = '1.3.2'
     mainClass = 'com.example.helloworld.HelloWorldApplication'
 }
 
@@ -29,9 +29,4 @@ shadowJar {
     manifest {
         attributes 'Main-Class': mainClass
     }
-}
-
-task runServer(dependsOn: shadowJar, type: JavaExec) {
-    main = '-jar'
-    args = [shadowJar.archivePath, 'server', 'hello-world.yml']
 }
